@@ -1,2 +1,6 @@
 #!/bin/bash
+<<<<<<< HEAD
 find . -type f -printf "%T@ %p\n" | sort -r -n | cut -d' ' -f 2- | head -n 10
+=======
+find . -type f | sort -k1.8n -k1.1nr -k1 | head -n 10
+>>>>>>> 6d2e881ae82ec4c7788b3e01f68fe3aae70893b4
