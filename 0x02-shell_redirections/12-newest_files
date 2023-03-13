@@ -1,2 +1,2 @@
 #!/bin/bash
-find . -type f | sort -r | tail -n 10
+ls -1t | head
