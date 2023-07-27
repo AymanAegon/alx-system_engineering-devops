@@ -10,4 +10,4 @@ while [[ $h -le 11 ]]; do
   done
   h=$((h+1))
 done
-echo 12
+echo "Hour: 12"
