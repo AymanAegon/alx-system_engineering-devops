@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# code to display lines containing "bash"
+
+ps axuf | grep "bash"
