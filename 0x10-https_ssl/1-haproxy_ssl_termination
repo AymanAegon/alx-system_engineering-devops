@@ -31,13 +31,11 @@ defaults
         errorfile 502 /etc/haproxy/errors/502.http
         errorfile 503 /etc/haproxy/errors/503.http
         errorfile 504 /etc/haproxy/errors/504.http
-frontend front
+
+listen myserver
         bind *:80
         bind *:443 ssl crt /etc/letsencrypt/live/www.therealayman.tech/fullchain.pem
         mode http
-        default_backend back
-backend back
-    balance roundrobin
-    server 375062-web-01 34.204.101.175:80 check
-    server 375062-web-02 35.153.192.118:80 check
-    
+        balance roundrobin
+        server 375062-web-01 34.204.101.175:80 check
+        server 375062-web-02 35.153.192.118:80 check
