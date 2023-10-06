@@ -33,11 +33,11 @@ defaults
         errorfile 504 /etc/haproxy/errors/504.http
 frontend front
         bind *:80
-        bind *:443 ssl crt /etc/letsencrypt/live/www.dairoeshop.tech/fullchain.pem
+        bind *:443 ssl crt /etc/letsencrypt/live/www.therealayman.tech/fullchain.pem
         mode http
         default_backend back
 backend back
     balance roundrobin
-    server 1564-web-01 35.227.29.60:80 check
-    server 1564-web-02 54.196.131.110:80 check
+    server 375062-web-01 34.204.101.175:80 check
+    server 375062-web-02 35.153.192.118:80 check
     
