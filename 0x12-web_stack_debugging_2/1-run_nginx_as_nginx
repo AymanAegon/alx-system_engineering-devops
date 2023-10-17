@@ -1,2 +1,4 @@
 #!/usr/bin/env bash
+# Run Nginx as Nginx
+
 sudo -u nginx service nginx restart
