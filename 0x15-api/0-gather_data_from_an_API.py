@@ -21,6 +21,6 @@ if __name__ == "__main__":
                 arr.append(todo.get("title"))
                 c += 1
 
-    print(f"Employee {user.get('name')} is done with tasks({c}/{n})")
+    print(f"Employee {user.get('name')} is done with tasks({c}/{n}):")
     for title in arr:
         print("\t " + title)
