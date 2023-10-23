@@ -22,7 +22,8 @@ if __name__ == "__main__":
                 obj["task"] = todo.get("title")
                 obj["completed"] = todo.get("completed")
                 arr.append(obj.copy())
-        data[user.get("id")] = arr
+        data[user.get("id")] = arr.copy()
+        arr = []
 
     filename = 'todo_all_employees.json'
     with open(filename, 'w') as jsonfile:
