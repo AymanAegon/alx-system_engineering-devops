@@ -12,16 +12,16 @@ if __name__ == "__main__":
     user = requests.get(s).json()
     response = requests.get('https://jsonplaceholder.typicode.com/todos')
 
-    arr = [argv[1], user.get("username")]
-    data = []
-    for todo in response.json():
-        if todo.get("userId") == int(argv[1]):
-            arr.append(str(todo.get("completed")))
-            arr.append(todo.get("title"))
-            data.append(arr)
-            arr = [argv[1], user.get("username")]
-
     filename = argv[1] + '.csv'
     with open(filename, 'w', newline='') as csvfile:
-        writer = csv.writer(csvfile)
-        writer.writerows(data)
+        fieldnames = ["USER_ID", "USERNAME",
+                      "TASK_COMPLETED_STATUS", "TASK_TITLE"]
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames,
+                                quoting=csv.QUOTE_ALL)
+        for todo in response.json():
+            if todo.get("userId") == int(argv[1]):
+                completed = str(todo.get("completed"))
+                writer.writerow({"USER_ID": argv[1],
+                                 "USERNAME": user.get("username"),
+                                 "TASK_COMPLETED_STATUS": completed,
+                                 "TASK_TITLE": todo.get("title")})
