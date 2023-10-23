@@ -3,8 +3,8 @@
 script that, using this REST API, for a given employee ID,
 returns information about his/her TODO list progress
 """
-from sys import argv
 import requests
+from sys import argv
 
 
 if __name__ == "__main__":
@@ -17,7 +17,7 @@ if __name__ == "__main__":
     for todo in response.json():
         if (todo.get("userId") == int(argv[1])):
             n += 1
-            if (todo.get("completed") == True):
+            if (todo.get("completed")):
                 arr.append(todo.get("title"))
                 c += 1
 
