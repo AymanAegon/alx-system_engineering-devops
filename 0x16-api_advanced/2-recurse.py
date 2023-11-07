@@ -3,23 +3,24 @@
 import requests
 
 
-def recurse(subreddit, hot_list=[], after_party=None):
+def recurse(subreddit, hot_list=[], after=None):
     """ returns a list containing the titles of
     all hot articles for a given subreddit """
-    header = {'User-Agent': 'fake'}
-    param = {'after': after_party}
-    url = 'http://www.reddit.com/r/{}/hot.json?after={}'
-    url = url.format(subreddit, after_party)
-    r = requests.get(url, headers=header)
-    if r.status_code == requests.codes.ok:
-        x = r.json().get('data').get('children')
-        after_party = r.json().get('data').get('after')
-        for page in x:
-            hot_list.append(page.get('data').get('title'))
+    header = {'User-Agent': 'app'}
+    url = 'http://www.reddit.com/r/{}/hot.json'
+    url = url.format(subreddit)
+    if after:
+        url += f'?after={after}'
+
+    response = requests.get(url, headers=header).json()
+    if "data" in response and "children" in response.get("data"):
+        posts = response.get('data').get('children')
+        for post in posts:
+            hot_list.append(post.get('data').get('title'))
         if len(hot_list) == 0:
             return None
-        if after_party is None:
-            return hot_list
-        return recurse(subreddit, hot_list, after_party)
+        if 'after' in response['data']:
+            return recurse(subreddit, hot_list, response['data']['after'])
+        return hot_list
     else:
         return None
