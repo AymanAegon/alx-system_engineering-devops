@@ -10,7 +10,7 @@ def top_ten(subreddit):
     headers = {'user-agent': 'app'}
     params = {'limit': 9}
     response = requests.get(url, params=params, headers=headers)
-    if response.status_code != 200:
+    if response.status_code != requests.codes.ok:
         print(None)
         return
     response = response.json()
