@@ -8,8 +8,12 @@ def top_ten(subreddit):
     listed for a given subreddit """
     url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
     headers = {'user-agent': 'app'}
-    params = {'limit': 9}
-    response = requests.get(url, params=params, headers=headers).json()
+    params = {'limit': 10}
+    response = requests.get(url, params=params, headers=headers)
+    if response.status_code != requests.codes.ok:
+        print(None)
+        return
+    response = response.json()
     if "data" in response and "children" in response.get("data"):
         for post in response.get("data").get("children"):
             print(post["data"]["title"])
